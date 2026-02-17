@@ -16,7 +16,7 @@ Jinja2==2.11.2
 urllib3==1.24.1
 
 # CVE-2018-20225 - Pip vulnerability (command injection in git)
-pip==8.1.1
+pip==26.0
 
 # CVE-2019-19911 - Pillow buffer overflow
 Pillow==6.2.0
