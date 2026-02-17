@@ -19,7 +19,7 @@ PyYAML==5.3.1
 cryptography==3.1
 
 # CVE-2020-5902 - requests vulnerability (older version)
-requests==2.25.1
+requests==2.32.4
 
 # CVE-2019-14806 - Werkzeug path traversal (older version)
 # Using current but demonstrating version tracking
