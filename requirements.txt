@@ -4,3 +4,26 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 Werkzeug==2.2.2
+
+# Known vulnerable packages for security testing
+# CVE-2015-2296 - Vulnerability in URL parsing
+requests==2.6.0
+
+# CVE-2020-28493 - Server-side template injection
+Jinja2==2.11.2
+
+# CVE-2021-41040 - urllib3 authorization header vulnerability
+urllib3==1.24.1
+
+# CVE-2018-20225 - Pip vulnerability (command injection in git)
+pip==8.1.1
+
+# CVE-2019-19911 - Pillow buffer overflow
+Pillow==6.2.0
+
+# CVE-2020-1747 - PyYAML arbitrary command execution
+PyYAML==5.3
+
+# CVE-2018-11776 - Apache Struts arbitrary code execution
+# Note: Included for broader vulnerability scanning demo
+cryptography==2.5
