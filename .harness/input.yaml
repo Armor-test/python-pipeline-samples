@@ -2,17 +2,20 @@ inputSet:
   name: samplepythoninputset
   tags: {}
   identifier: samplepythoninputset
-  orgIdentifier: default
-  projectIdentifier: krishikasingh
+  orgIdentifier: WorkshopOrg
+  projectIdentifier: devsecops763c5
   pipeline:
     identifier: pythonhelloworld
     properties:
       ci:
         codebase:
+          connectorRef: org.workshopgithub
           build:
             type: branch
             spec:
-              branch: master
+              branch: main
+          depth: 0
+          prCloneStrategy: SourceBranch
     stages:
       - stage:
           identifier: build_test_and_run
@@ -21,11 +24,21 @@ inputSet:
             execution:
               steps:
                 - step:
+                    identifier: Code_compile
+                    type: Run
+                    spec:
+                      connectorRef: account.harnessImage
+                - step:
+                    identifier: Create_dockerfile
+                    type: Run
+                    spec:
+                      connectorRef: account.harnessImage
+                - step:
                     identifier: Build_and_Push_an_image_to_docker_registry
                     type: BuildAndPushDockerRegistry
                     spec:
                       connectorRef: docker_Quickstart
-                      repo: krishi0408/pythonsample
+                      repo: ayushmittalac/harness-nodejs-sample
       - stage:
           identifier: Integration_test
           type: CI
@@ -36,10 +49,10 @@ inputSet:
                     identifier: python_server
                     type: Background
                     spec:
-                      connectorRef: ""
-                      image: ""
+                      connectorRef: account.harnessImage
+                      image: ayushmittalac/harness-nodejs-sample:latest
                 - step:
                     identifier: test_connection_to_server
                     type: Run
                     spec:
-                      connectorRef: docker_Quickstart
+                      connectorRef: account.harnessImage
