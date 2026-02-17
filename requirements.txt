@@ -16,7 +16,7 @@ PyYAML==5.3.1
 # Note: Can't pin old pip in requirements.txt, but base image has vulnerable version
 
 # CVE-2020-12888 - cryptography vulnerability
-cryptography==3.1
+cryptography==46.0.5
 
 # CVE-2020-5902 - requests vulnerability (older version)
 requests==2.25.1
