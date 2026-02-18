@@ -24,8 +24,8 @@
                   name: Code compile
                   identifier: Code_compile
                   spec:
-                    connectorRef: <+input>
-                    image: python:3.10.6-alpine
+                    connectorRef: account.harnessImage
+                    image: python:3.10.6-slim
                     shell: Sh
                     command: python -m compileall ./
               - step:
@@ -33,13 +33,13 @@
                   name: Create dockerfile
                   identifier: Create_dockerfile
                   spec:
-                    connectorRef: <+input>
+                    connectorRef: account.harnessImage
                     image: alpine
                     shell: Sh
                     command: |-
                       touch pythondockerfile
                       cat > pythondockerfile <<- EOM
-                      FROM python:3.10.6-alpine
+                      FROM python:3.10.6-slim
                       WORKDIR /python-pipeline-sample
                       ADD . /python-pipeline-sample
                       RUN pip install -r requirements.txt
@@ -51,8 +51,8 @@
                   name: Build and Push an image to docker registry
                   identifier: Build_and_Push_an_image_to_docker_registry
                   spec:
-                    connectorRef: <+input>
-                    repo: <+input>
+                    connectorRef: docker_Quickstart
+                    repo: ayushmittalac/harness-nodejs-sample
                     tags:
                       - latest
                     dockerfile: pythondockerfile
@@ -77,8 +77,8 @@
                   name: "python server "
                   identifier: python_server
                   spec:
-                    connectorRef: <+input>
-                    image: <+input>
+                    connectorRef: account.harnessImage
+                    image: ayushmittalac/harness-nodejs-sample:latest
                     shell: Sh
                     command: python3 ./app.py
               - step:
@@ -86,7 +86,7 @@
                   name: "test connection to server "
                   identifier: test_connection_to_server
                   spec:
-                    connectorRef: <+input>
+                    connectorRef: account.harnessImage
                     image: curlimages/curl:7.73.0
                     shell: Sh
                     command: |-
